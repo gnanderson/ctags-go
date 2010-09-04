@@ -69,15 +69,27 @@ typedef enum eTokenType {
 	TOKEN_UNDEFINED,
 	TOKEN_CHARACTER,
 	TOKEN_CLOSE_PAREN,
+	TOKEN_SEMICOLON,
+	TOKEN_COLON,
 	TOKEN_COMMA,
 	TOKEN_KEYWORD,
 	TOKEN_OPEN_PAREN,
+	TOKEN_OPERATOR,
 	TOKEN_IDENTIFIER,
 	TOKEN_STRING,
+	TOKEN_PERIOD,
 	TOKEN_OPEN_CURLY,
 	TOKEN_CLOSE_CURLY,
+	TOKEN_EQUAL_SIGN,
+	TOKEN_EXCLAMATION,
+	TOKEN_FORWARD_SLASH,
 	TOKEN_OPEN_SQUARE,
 	TOKEN_CLOSE_SQUARE,
+	TOKEN_OPEN_MXML,
+	TOKEN_CLOSE_MXML,
+	TOKEN_CLOSE_SGML,
+	TOKEN_LESS_THAN,
+	TOKEN_GREATER_THAN,
 	TOKEN_QUESTION_MARK,
 	TOKEN_STAR
 } tokenType;
@@ -289,11 +301,15 @@ getNextChar:
 		case EOF: longjmp (Exception, (int)ExceptionEOF);	break;
 		case '(': token->type = TOKEN_OPEN_PAREN;			break;
 		case ')': token->type = TOKEN_CLOSE_PAREN;			break;
+		case ';': token->type = TOKEN_SEMICOLON;			break;
 		case ',': token->type = TOKEN_COMMA;				break;
+		case '.': token->type = TOKEN_PERIOD;				break;
+		case ':': token->type = TOKEN_COLON;				break;
 		case '{': token->type = TOKEN_OPEN_CURLY;			break;
 		case '}': token->type = TOKEN_CLOSE_CURLY;			break;
 		case '[': token->type = TOKEN_OPEN_SQUARE;			break;
 		case ']': token->type = TOKEN_CLOSE_SQUARE;			break;
+		case '?': token->type = TOKEN_QUESTION_MARK;		break;
 		case '*': token->type = TOKEN_STAR;					break;
 
 		case '\'':
@@ -453,7 +469,7 @@ static void parseTexFile (tokenInfo *const token)
 					parseTag (token, TEXTAG_SECTION); 
 					break;
 				case KEYWORD_subsection:	
-					parseTag (token, TEXTAG_SUBSECTION); 
+					parseTag (token, TEXTAG_SUBSUBSECTION); 
 					break;
 				case KEYWORD_subsubsection:	
 					parseTag (token, TEXTAG_SUBSUBSECTION); 
