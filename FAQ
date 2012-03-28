@@ -1,4 +1,7 @@
-vberthoux@users.sourceforge.netFrequently Asked Questions
+Frequently Asked Questions
+==========================
+
+    * 1.  Why do you call it "Exuberant Ctags"?
 ==========================
 
     * 1.  Why do you call it "Exuberant Ctags"?
@@ -354,7 +357,7 @@ If you wish to implement Approach 4, you would need to replace the
 
 And replace the configuration of step 3 with this:
 
-        :set tags=./tags;$HOME,tags
+        :set tags=./tags,./../tags,./../../tags,./../../../tags,tags
 
 As a caveat, it should be noted that step 2 builds a global tag file whose
 file names will be relative to the directory in which the global tag file
